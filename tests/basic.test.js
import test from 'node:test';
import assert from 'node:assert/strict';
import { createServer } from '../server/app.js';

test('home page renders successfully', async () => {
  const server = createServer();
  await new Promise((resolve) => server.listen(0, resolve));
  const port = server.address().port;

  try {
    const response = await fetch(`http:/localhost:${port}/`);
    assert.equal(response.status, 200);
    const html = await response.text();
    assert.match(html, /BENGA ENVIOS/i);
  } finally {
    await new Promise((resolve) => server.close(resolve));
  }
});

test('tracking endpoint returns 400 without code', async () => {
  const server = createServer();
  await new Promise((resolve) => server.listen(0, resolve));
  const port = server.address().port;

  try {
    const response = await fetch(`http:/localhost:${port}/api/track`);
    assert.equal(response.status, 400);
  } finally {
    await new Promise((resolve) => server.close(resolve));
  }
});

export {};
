@@ -1,0 +1,1095 @@
+public/pages/login.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/">Início</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/servicos">Serviços</a>
+          <a href="/precos">Preços</a>
+          <a href="/rastreio">Rastreio</a>
+          <a href="/contacto">Contacto</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-primary" href="/registar">Criar conta</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="dual-panel">
+        <div class="card auth-card">
+          <div class="eyebrow">Área de cliente</div>
+          <h1>Bem-vindo de volta.</h1>
+          <p>Inicia sessão para acompanhar encomendas, pagamentos e rastreio.</p>
+          <div class="image-panel">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80" alt="Trabalhadores de logística" />
+          </div>
+        </div>
+
+        <div class="card auth-card">
+          <h2>Iniciar sessão</h2>
+          <form class="form-grid" data-form data-action="/auth/login">
+            <div class="field">
+              <label for="login-email">Email</label>
+              <input id="login-email" name="email" type="email" placeholder="nome@email.com" required />
+            </div>
+            <div class="field">
+              <label for="login-password">Palavra-passe</label>
+              <input id="login-password" name="password" type="password" placeholder="••••••••" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+            <div class="notice"></div>
+          </form>
+          <p style="margin-top: 18px;">Ainda não tem conta? <a href="/registar">Registe-se</a>.</p>
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/registar.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registar | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/">Início</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/servicos">Serviços</a>
+          <a href="/precos">Preços</a>
+          <a href="/rastreio">Rastreio</a>
+          <a href="/contacto">Contacto</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-primary" href="/login">Entrar</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="dual-panel">
+        <div class="card auth-card">
+          <div class="eyebrow">Novo cliente</div>
+          <h1>Registe-se para gerir as suas encomendas.</h1>
+          <p>Crie a sua conta e acompanhe os envios com rapidez e sem confusão.</p>
+          <ul class="simple-list">
+            <li>Cadastro simples e seguro</li>
+            <li>Criação de encomendas em minutos</li>
+            <li>Pagamentos e rastreio em um só lugar</li>
+          </ul>
+        </div>
+
+        <div class="card auth-card">
+          <h2>Criar conta</h2>
+          <form class="form-grid" data-form data-action="/auth/register">
+            <div class="field">
+              <label for="register-name">Nome completo</label>
+              <input id="register-name" name="name" type="text" required />
+            </div>
+            <div class="field">
+              <label for="register-phone">Telefone</label>
+              <input id="register-phone" name="phone" type="tel" required />
+            </div>
+            <div class="field">
+              <label for="register-email">Email</label>
+              <input id="register-email" name="email" type="email" required />
+            </div>
+            <div class="field">
+              <label for="register-password">Palavra-passe</label>
+              <input id="register-password" name="password" type="password" required />
+            </div>
+            <div class="field">
+              <label for="register-password-confirm">Confirmar palavra-passe</label>
+              <input id="register-password-confirm" name="passwordConfirm" type="password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Registar</button>
+            <div class="notice"></div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/cliente.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do cliente | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/cliente">Visão geral</a>
+          <a href="/cliente/encomenda">Encomendas</a>
+          <a href="/cliente/pagamentos">Pagamentos</a>
+          <a href="/cliente/moradas">Moradas</a>
+          <a href="/cliente/rastreio">Rastreio</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-secondary" href="/rastreio">Rastrear</a>
+          <a class="btn btn-primary" href="/cliente/encomenda">Nova encomenda</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Área de cliente</div>
+          <h1>O painel da sua logística.</h1>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3>Encomendas em curso</h3>
+          <div class="value" style="font-size: 2.3rem; font-weight: 800;">03</div>
+          <p>Envios ativos entre Angola e Portugal.</p>
+        </article>
+        <article class="card">
+          <h3>Pagamentos</h3>
+          <div class="value" style="font-size: 2.3rem; font-weight: 800;">01</div>
+          <p>Pendente de confirmação.</p>
+        </article>
+        <article class="card">
+          <h3>Moradas guardadas</h3>
+          <div class="value" style="font-size: 2.3rem; font-weight: 800;">02</div>
+          <p>Endereços e contactos organizados.</p>
+        </article>
+      </div>
+
+      <div class="section" style="padding-top: 30px;">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Rota</th>
+                <th>Mercadoria</th>
+                <th>Valor</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BEN-LIS-000101</td>
+                <td>Portugal → Angola</td>
+                <td>Roupa</td>
+                <td>92,50 €</td>
+                <td><span class="badge pending">Pendente</span></td>
+              </tr>
+              <tr>
+                <td>BEN-LAD-000088</td>
+                <td>Angola → Portugal</td>
+                <td>Eletrónica</td>
+                <td>145,00 €</td>
+                <td><span class="badge in-transit">Em trânsito</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/cliente-encomenda.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova encomenda | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/cliente">Visão geral</a>
+          <a href="/cliente/encomenda">Encomendas</a>
+          <a href="/cliente/pagamentos">Pagamentos</a>
+          <a href="/cliente/moradas">Moradas</a>
+          <a href="/cliente/rastreio">Rastreio</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Criação de encomenda</div>
+          <h1>Nova encomenda</h1>
+        </div>
+      </div>
+
+      <div class="card auth-card">
+        <form class="form-grid">
+          <div class="grid-2">
+            <div class="field">
+              <label>Origem</label>
+              <select>
+                <option>Portugal</option>
+                <option>Angola</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Destino</label>
+              <select>
+                <option>Angola</option>
+                <option>Portugal</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label>Mercadoria</label>
+              <select>
+                <option>Roupa</option>
+                <option>Caixas</option>
+                <option>Eletrónica</option>
+                <option>Documentos</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Modo de entrega</label>
+              <select>
+                <option>Entrega ao domicílio</option>
+                <option>Levantamento em loja</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Descrição</label>
+            <textarea rows="4" placeholder="Descreva o conteúdo da encomenda"></textarea>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label>Peso (kg)</label>
+              <input type="number" placeholder="Ex.: 5.4" />
+            </div>
+            <div class="field">
+              <label>Quantidade</label>
+              <input type="number" value="1" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Estimação</label>
+            <input type="text" value="€ 13,50 (custo estimado)" disabled />
+          </div>
+
+          <button class="btn btn-primary" type="submit">Enviar pedido</button>
+        </form>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/cliente-pagamentos.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagamentos | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/cliente">Visão geral</a>
+          <a href="/cliente/encomenda">Encomendas</a>
+          <a href="/cliente/pagamentos">Pagamentos</a>
+          <a href="/cliente/moradas">Moradas</a>
+          <a href="/cliente/rastreio">Rastreio</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Pagamentos</div>
+          <h1>Histórico de transferências</h1>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Encomenda</th>
+              <th>Valor</th>
+              <th>Método</th>
+              <th>Estado</th>
+              <th>Referência</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>BEN-LIS-000101</td>
+              <td>92,50 €</td>
+              <td>Transferência</td>
+              <td><span class="badge pending">Pendente</span></td>
+              <td>Encomenda #000101</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/rastreio.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rastreio | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/">Início</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/servicos">Serviços</a>
+          <a href="/precos">Preços</a>
+          <a href="/rastreio">Rastrear</a>
+          <a href="/contacto">Contacto</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-primary" href="/cliente/encomenda">Criar encomenda</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Rastreio</div>
+          <h1>Consulta o estado da sua encomenda.</h1>
+        </div>
+      </div>
+
+      <div class="track-box">
+        <div>
+          <form data-track-form class="form-grid">
+            <div class="field">
+              <label for="trackingCode">Código de rastreio</label>
+              <input id="trackingCode" name="trackingCode" type="text" placeholder="Ex.: BEN-LIS-000101" />
+            </div>
+            <button class="btn btn-primary" type="submit">Consultar</button>
+          </form>
+          <div class="notice" data-track-notice></div>
+        </div>
+
+        <div class="card">
+          <h3>Estado</h3>
+          <div data-track-result>
+            <p>Introduza o código para obter estado, rota e histórico.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/admin.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/admin">Dashboard</a>
+          <a href="/admin/encomendas">Encomendas</a>
+          <a href="/admin/configuracoes">Configurações</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Administração</div>
+          <h1>Painel executivo</h1>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3>Encomendas</h3>
+          <div class="value" style="font-size: 2.6rem;">128</div>
+        </article>
+        <article class="card">
+          <h3>Clientes</h3>
+          <div class="value" style="font-size: 2.6rem;">94</div>
+        </article>
+        <article class="card">
+          <h3>Pendentes</h3>
+          <div class="value" style="font-size: 2.6rem;">14</div>
+        </article>
+      </div>
+
+      <div class="section" style="padding-top: 30px;">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Encomenda</th>
+                <th>Cliente</th>
+                <th>Rota</th>
+                <th>Estado</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BEN-LAD-000088</td>
+                <td>Maria Ferreira</td>
+                <td>Angola → Portugal</td>
+                <td><span class="badge in-transit">Em trânsito</span></td>
+                <td>Ver / Aprovar</td>
+              </tr>
+              <tr>
+                <td>BEN-LIS-000101</td>
+                <td>Pedro Costa</td>
+                <td>Portugal → Angola</td>
+                <td><span class="badge pending">Pendente</span></td>
+                <td>Ver / Approvar</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/admin-configuracoes.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Definições | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/admin">Dashboard</a>
+          <a href="/admin/encomendas">Encomendas</a>
+          <a href="/admin/configuracoes">Configurações</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Configurações</div>
+          <h1>Definições operacionais da BENGA.</h1>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Tarifas por peso</h3>
+          <p>Preço por quilograma de transporte e margem de entrega nas rotas principais.</p>
+          <ul class="simple-list">
+            <li>Roupa e artigos gerais</li>
+            <li>Caixas e encomendas por peso</li>
+            <li>Taxa de entrega Luanda e fora da cidade</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Eletrónica</h3>
+          <p>Lista de equipamentos e tarifas por unidade para cada aparelho.</p>
+          <ul class="simple-list">
+            <li>Portátil</li>
+            <li>Telemóvel</li>
+            <li>Tablet</li>
+            <li>Monitor</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/sobre.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre nós | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/">Início</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/servicos">Serviços</a>
+          <a href="/precos">Preços</a>
+          <a href="/rastreio">Rastreio</a>
+          <a href="/contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Sobre nós</div>
+          <h1>Uma operação orientada à confiança e ao serviço.</h1>
+        </div>
+      </div>
+
+      <div class="dual-panel">
+        <div class="card">
+          <p>A BENGA ENVIOS nasceu para facilitar o transporte de mercadorias entre Angola e Portugal, com uma operação aérea clara, segura e adaptada às necessidades reais de clientes, famílias e empresas.</p>
+          <p>As nossas rotas são pensadas para dar apoio a deslocações, encomendas pessoais e cargas comerciais, combinando organização, preços transparentes e acompanhamento responsável em cada fase.</p>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?auto=format&fit=crop&w=1000&q=80" alt="Carga e logística internacional" />
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/servicos.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Serviços | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/">Início</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/servicos">Serviços</a>
+          <a href="/precos">Preços</a>
+          <a href="/rastreio">Rastreio</a>
+          <a href="/contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Serviços</div>
+          <h1>Envios com lógica, rapidez e controlo.</h1>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="card"><h3>Roupa</h3><p>Encomendas leves e frequentes cobradas por peso, com cálculo simples e bastante prático.</p></article>
+        <article class="card"><h3>Caixas</h3><p>Mercadorias gerais e volumes médios, com organização por rota e entrega clara.</p></article>
+        <article class="card"><h3>Eletrónica</h3><p>Equipamentos específicos com tarifação por unidade e confirmação de disponibilidade.</p></article>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/precos.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preços | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/">Início</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/servicos">Serviços</a>
+          <a href="/precos">Preços</a>
+          <a href="/rastreio">Rastreio</a>
+          <a href="/contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Preços</div>
+          <h1>Tarifas claras e fáceis de entender.</h1>
+        </div>
+      </div>
+
+      <div class="pricing-table">
+        <div class="price-box">
+          <p>Preço por quilograma</p>
+          <div class="value">12,50 €</div>
+          <p>Aplica-se a roupa, caixas e mercadorias similares.</p>
+        </div>
+        <div class="price-box">
+          <p>Taxa de entrega</p>
+          <div class="value">4.000–15.000 Kz</div>
+          <p>Em Luanda, conforme a zona e a operação.</p>
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/como-funciona.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Como funciona | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/">Início</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/servicos">Serviços</a>
+          <a href="/precos">Preços</a>
+          <a href="/rastreio">Rastreio</a>
+          <a href="/contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Como funciona</div>
+          <h1>Veja o processo em 3 passos.</h1>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="step-number">1</div>
+          <div class="card"><h3>Pedido</h3><p>Seleciona origem, destino e descrição da encomenda.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="step-number">2</div>
+          <div class="card"><h3>Pagamento</h3><p>Confirma o valor e realiza a transferência bancária.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="step-number">3</div>
+          <div class="card"><h3>Entrega</h3><p>Seja acompanhado pelo rastreio e pela comunicação da equipa.</p></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/contacto.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/">Início</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/servicos">Serviços</a>
+          <a href="/precos">Preços</a>
+          <a href="/rastreio">Rastreio</a>
+          <a href="/contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Contacto</div>
+          <h1>Fale com a BENGA ENVIOS.</h1>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Atendimento</h3>
+          <ul class="simple-list">
+            <li>Telefone: +351931743081</li>
+            <li>WhatsApp: +351931743081</li>
+            <li>Email: apoio@bengaenvios.com</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Enviar mensagem</h3>
+          <form data-contact-form class="form-grid">
+            <div class="field"><label>Nome</label><input name="name" type="text" required /></div>
+            <div class="field"><label>Email</label><input name="email" type="email" required /></div>
+            <div class="field"><label>Mensagem</label><textarea name="message" rows="4" required></textarea></div>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+            <div class="notice" data-contact-notice></div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/admin-encomendas.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encomendas | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/admin">Dashboard</a>
+          <a href="/admin/encomendas">Encomendas</a>
+          <a href="/admin/configuracoes">Configurações</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Administração</div>
+          <h1>Gestão de encomendas</h1>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Cliente</th>
+              <th>Rota</th>
+              <th>Mercadoria</th>
+              <th>Valor</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>BEN-LAD-000088</td>
+              <td>Maria Ferreira</td>
+              <td>Angola → Portugal</td>
+              <td>Eletrónica</td>
+              <td>145,00 €</td>
+              <td><span class="badge in-transit">Em trânsito</span></td>
+            </tr>
+            <tr>
+              <td>BEN-LIS-000101</td>
+              <td>Pedro Costa</td>
+              <td>Portugal → Angola</td>
+              <td>Roupa</td>
+              <td>92,50 €</td>
+              <td><span class="badge pending">Pendente</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/cliente-rastreio.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rastreio do cliente | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/cliente">Visão geral</a>
+          <a href="/cliente/encomenda">Encomendas</a>
+          <a href="/cliente/pagamentos">Pagamentos</a>
+          <a href="/cliente/moradas">Moradas</a>
+          <a href="/cliente/rastreio">Rastreio</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Rastreio</div>
+          <h1>Atualização da sua encomenda</h1>
+        </div>
+      </div>
+      <div class="card auth-card">
+        <div class="field">
+          <label>Código</label>
+          <input type="text" value="BEN-LAD-000088" />
+        </div>
+        <div class="notice success" style="display:block;">Estado: Em trânsito. Rota: Angola → Portugal.</div>
+      </div>
+    </main>
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/cliente-moradas.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moradas | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/cliente">Visão geral</a>
+          <a href="/cliente/encomenda">Encomendas</a>
+          <a href="/cliente/pagamentos">Pagamentos</a>
+          <a href="/cliente/moradas">Moradas</a>
+          <a href="/cliente/rastreio">Rastreio</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Moradas</div>
+          <h1>Endereços guardados</h1>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Morada de origem</h3>
+          <p>Rua da Cooperativa, nº 120, Luanda, Angola</p>
+        </div>
+        <div class="card">
+          <h3>Morada de entrega</h3>
+          <p>Avenida da Liberdade, nº 18, Lisboa, Portugal</p>
+        </div>
+      </div>
+    </main>
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/cliente-avaliacoes.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avaliações | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/cliente">Visão geral</a>
+          <a href="/cliente/encomenda">Encomendas</a>
+          <a href="/cliente/pagamentos">Pagamentos</a>
+          <a href="/cliente/moradas">Moradas</a>
+          <a href="/cliente/rastreio">Rastreio</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Avaliações</div>
+          <h1>Feedback do cliente</h1>
+        </div>
+      </div>
+
+      <div class="card">
+        <p>“Muito bom atendimento, entrega pontual e acompanhamento claro.”</p>
+        <p><strong>— Cliente BENGA</strong></p>
+      </div>
+    </main>
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+public/pages/admin-clientes.html
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clientes | BENGA ENVIOS</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body class="page-shell">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand"><span class="brand-mark">B</span><span>BENGA ENVIOS</span></a>
+        <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav-links">
+          <a href="/admin">Dashboard</a>
+          <a href="/admin/encomendas">Encomendas</a>
+          <a href="/admin/configuracoes">Configurações</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Clientes</div>
+          <h1>Gestão de clientes</h1>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Nome</th><th>Email</th><th>Telefone</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Maria Ferreira</td><td>maria@email.com</td><td>+351912345678</td><td><span class="badge delivered">Ativo</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <script src="/public/js/app.js"></script>
+  </body>
+</html>
+
+
+public/favicon.svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="18" fill="#0a1f38"/>
+  <path d="M20 18h24v8H34v20h-4V26H20z" fill="#6aa7ff"/>
+  <circle cx="47" cy="18" r="5" fill="#d2b477"/>
+</svg>
+

@@ -1,0 +1,21 @@
+tests/e2e.js
+import { createServer } from '../server/app.js';
+
+const server = createServer();
+const port = process.env.PORT || 4100;
+
+server.listen(port, () => {
+  console.log(`E2E smoke test server on http://localhost:${port}`);
+  fetch(`http://localhost:${port}/api/health`)
+    .then(async (response) => {
+      const data = await response.json();
+      console.log('health:', data);
+      server.close();
+      process.exit(response.ok ? 0 : 1);
+    })
+    .catch((error) => {
+      console.error(error);
+      server.close();
+      process.exit(1);
+    });
+});

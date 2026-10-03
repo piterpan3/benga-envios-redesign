@@ -1,0 +1,128 @@
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { querystring } from './lib/utils.js';
+import database from './lib/database.js';
+import session from './lib/session.js';
+import auth from './routes/auth.js';
+import api from './routes/api.js';
+import pages from './routes/pages.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export function createServer() {
+  database.init();
+
+  const server = http.createServer(async (req, res) => {
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const pathname = url.pathname;
+    const method = req.method;
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+
+    if (method === 'OPTIONS') {
+      res.writeHead(204);
+      res.end();
+      return;
+    }
+
+    let cookies = {};
+    const cookieHeader = req.headers.cookie;
+    if (cookieHeader) {
+      cookieHeader.split(';').forEach(cookie => {
+        const [name, value] = cookie.trim().split('=');
+        cookies[name] = decodeURIComponent(value || '');
+      });
+    }
+
+    const sessionId = cookies.sessionId;
+    const user = sessionId ? session.getUser(sessionId) : null;
+
+    req.session = { id: sessionId, user };
+    req.url = url;
+    req.query = Object.fromEntries(url.searchParams);
+    req.cookies = cookies;
+
+    res.setSession = (nextSessionId) => {
+      res.setHeader('Set-Cookie', `sessionId=${nextSessionId}; HttpOnly; Path=/; Max-Age=${7 * 24 * 60 * 60}`);
+    };
+
+    res.json = (data, status = 200) => {
+      res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify(data));
+    };
+
+    res.html = (htmlContent, status = 200) => {
+      res.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(htmlContent);
+    };
+
+    res.redirect = (location, status = 302) => {
+      res.writeHead(status, { Location: location });
+      res.end();
+    };
+
+    req.parseBody = () => new Promise((resolve) => {
+      let body = '';
+      req.on('data', (chunk) => {
+        body += chunk.toString();
+      });
+      req.on('end', () => {
+        try {
+          resolve(querystring.parse(body));
+        } catch (error) {
+          resolve({});
+        }
+      });
+    });
+
+    try {
+      if (pathname.startsWith('/public/')) {
+        const filePath = path.join(__dirname, '..', pathname);
+        const ext = path.extname(filePath);
+        const mimeTypes = {
+          '.css': 'text/css',
+          '.js': 'application/javascript',
+          '.png': 'image/png',
+          '.jpg': 'image/jpeg',
+          '.jpeg': 'image/jpeg',
+          '.gif': 'image/gif',
+          '.svg': 'image/svg+xml',
+          '.ico': 'image/x-icon',
+          '.webp': 'image/webp'
+        };
+
+        if (fs.existsSync(filePath)) {
+          const content = fs.readFileSync(filePath);
+          res.writeHead(200, { 'Content-Type': mimeTypes[ext] || 'application/octet-stream' });
+          res.end(content);
+          return;
+        }
+      }
+
+      if (pathname.startsWith('/api/')) {
+        await api(req, res);
+        return;
+      }
+
+      if (pathname.startsWith('/auth/')) {
+        await auth(req, res);
+        return;
+      }
+
+      await pages(req, res);
+    } catch (error) {
+      console.error(error);
+      res.json({ error: 'Internal server error' }, 500);
+    }
+  });
+
+  return server;
+}

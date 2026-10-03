@@ -1,0 +1,50 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const PUBLIC_ROOT = path.join(__dirname, '..', '..', 'public');
+
+const pageMap = {
+  '/': 'index.html',
+  '/inicio': 'index.html',
+  '/sobre': 'pages/sobre.html',
+  '/servicos': 'pages/servicos.html',
+  '/precos': 'pages/precos.html',
+  '/como-funciona': 'pages/como-funciona.html',
+  '/rastreio': 'pages/rastreio.html',
+  '/contacto': 'pages/contacto.html',
+  '/login': 'pages/login.html',
+  '/registar': 'pages/registar.html',
+  '/cliente': 'pages/cliente.html',
+  '/cliente/encomenda': 'pages/cliente-encomenda.html',
+  '/cliente/pagamentos': 'pages/cliente-pagamentos.html',
+  '/cliente/moradas': 'pages/cliente-moradas.html',
+  '/cliente/avaliacoes': 'pages/cliente-avaliacoes.html',
+  '/cliente/rastreio': 'pages/cliente-rastreio.html',
+  '/admin': 'pages/admin.html',
+  '/admin/encomendas': 'pages/admin-encomendas.html',
+  '/admin/configuracoes': 'pages/admin-configuracoes.html'
+};
+
+const pages = async (req, res) => {
+  const pathname = req.url.pathname;
+  const filePath = pageMap[pathname] || pageMap['/'];
+  const fullPath = path.join(PUBLIC_ROOT, filePath);
+
+  try {
+    if (!fs.existsSync(fullPath)) {
+      return res.html('<h1>404</h1><p>Página não encontrada.</p>', 404);
+    }
+
+    const content = fs.readFileSync(fullPath, 'utf-8');
+    return res.html(content, 200);
+  } catch (error) {
+    console.error(error);
+    return res.html('<h1>500</h1><p>Erro ao carregar a página.</p>', 500);
+  }
+};
+
+export default pages;
+

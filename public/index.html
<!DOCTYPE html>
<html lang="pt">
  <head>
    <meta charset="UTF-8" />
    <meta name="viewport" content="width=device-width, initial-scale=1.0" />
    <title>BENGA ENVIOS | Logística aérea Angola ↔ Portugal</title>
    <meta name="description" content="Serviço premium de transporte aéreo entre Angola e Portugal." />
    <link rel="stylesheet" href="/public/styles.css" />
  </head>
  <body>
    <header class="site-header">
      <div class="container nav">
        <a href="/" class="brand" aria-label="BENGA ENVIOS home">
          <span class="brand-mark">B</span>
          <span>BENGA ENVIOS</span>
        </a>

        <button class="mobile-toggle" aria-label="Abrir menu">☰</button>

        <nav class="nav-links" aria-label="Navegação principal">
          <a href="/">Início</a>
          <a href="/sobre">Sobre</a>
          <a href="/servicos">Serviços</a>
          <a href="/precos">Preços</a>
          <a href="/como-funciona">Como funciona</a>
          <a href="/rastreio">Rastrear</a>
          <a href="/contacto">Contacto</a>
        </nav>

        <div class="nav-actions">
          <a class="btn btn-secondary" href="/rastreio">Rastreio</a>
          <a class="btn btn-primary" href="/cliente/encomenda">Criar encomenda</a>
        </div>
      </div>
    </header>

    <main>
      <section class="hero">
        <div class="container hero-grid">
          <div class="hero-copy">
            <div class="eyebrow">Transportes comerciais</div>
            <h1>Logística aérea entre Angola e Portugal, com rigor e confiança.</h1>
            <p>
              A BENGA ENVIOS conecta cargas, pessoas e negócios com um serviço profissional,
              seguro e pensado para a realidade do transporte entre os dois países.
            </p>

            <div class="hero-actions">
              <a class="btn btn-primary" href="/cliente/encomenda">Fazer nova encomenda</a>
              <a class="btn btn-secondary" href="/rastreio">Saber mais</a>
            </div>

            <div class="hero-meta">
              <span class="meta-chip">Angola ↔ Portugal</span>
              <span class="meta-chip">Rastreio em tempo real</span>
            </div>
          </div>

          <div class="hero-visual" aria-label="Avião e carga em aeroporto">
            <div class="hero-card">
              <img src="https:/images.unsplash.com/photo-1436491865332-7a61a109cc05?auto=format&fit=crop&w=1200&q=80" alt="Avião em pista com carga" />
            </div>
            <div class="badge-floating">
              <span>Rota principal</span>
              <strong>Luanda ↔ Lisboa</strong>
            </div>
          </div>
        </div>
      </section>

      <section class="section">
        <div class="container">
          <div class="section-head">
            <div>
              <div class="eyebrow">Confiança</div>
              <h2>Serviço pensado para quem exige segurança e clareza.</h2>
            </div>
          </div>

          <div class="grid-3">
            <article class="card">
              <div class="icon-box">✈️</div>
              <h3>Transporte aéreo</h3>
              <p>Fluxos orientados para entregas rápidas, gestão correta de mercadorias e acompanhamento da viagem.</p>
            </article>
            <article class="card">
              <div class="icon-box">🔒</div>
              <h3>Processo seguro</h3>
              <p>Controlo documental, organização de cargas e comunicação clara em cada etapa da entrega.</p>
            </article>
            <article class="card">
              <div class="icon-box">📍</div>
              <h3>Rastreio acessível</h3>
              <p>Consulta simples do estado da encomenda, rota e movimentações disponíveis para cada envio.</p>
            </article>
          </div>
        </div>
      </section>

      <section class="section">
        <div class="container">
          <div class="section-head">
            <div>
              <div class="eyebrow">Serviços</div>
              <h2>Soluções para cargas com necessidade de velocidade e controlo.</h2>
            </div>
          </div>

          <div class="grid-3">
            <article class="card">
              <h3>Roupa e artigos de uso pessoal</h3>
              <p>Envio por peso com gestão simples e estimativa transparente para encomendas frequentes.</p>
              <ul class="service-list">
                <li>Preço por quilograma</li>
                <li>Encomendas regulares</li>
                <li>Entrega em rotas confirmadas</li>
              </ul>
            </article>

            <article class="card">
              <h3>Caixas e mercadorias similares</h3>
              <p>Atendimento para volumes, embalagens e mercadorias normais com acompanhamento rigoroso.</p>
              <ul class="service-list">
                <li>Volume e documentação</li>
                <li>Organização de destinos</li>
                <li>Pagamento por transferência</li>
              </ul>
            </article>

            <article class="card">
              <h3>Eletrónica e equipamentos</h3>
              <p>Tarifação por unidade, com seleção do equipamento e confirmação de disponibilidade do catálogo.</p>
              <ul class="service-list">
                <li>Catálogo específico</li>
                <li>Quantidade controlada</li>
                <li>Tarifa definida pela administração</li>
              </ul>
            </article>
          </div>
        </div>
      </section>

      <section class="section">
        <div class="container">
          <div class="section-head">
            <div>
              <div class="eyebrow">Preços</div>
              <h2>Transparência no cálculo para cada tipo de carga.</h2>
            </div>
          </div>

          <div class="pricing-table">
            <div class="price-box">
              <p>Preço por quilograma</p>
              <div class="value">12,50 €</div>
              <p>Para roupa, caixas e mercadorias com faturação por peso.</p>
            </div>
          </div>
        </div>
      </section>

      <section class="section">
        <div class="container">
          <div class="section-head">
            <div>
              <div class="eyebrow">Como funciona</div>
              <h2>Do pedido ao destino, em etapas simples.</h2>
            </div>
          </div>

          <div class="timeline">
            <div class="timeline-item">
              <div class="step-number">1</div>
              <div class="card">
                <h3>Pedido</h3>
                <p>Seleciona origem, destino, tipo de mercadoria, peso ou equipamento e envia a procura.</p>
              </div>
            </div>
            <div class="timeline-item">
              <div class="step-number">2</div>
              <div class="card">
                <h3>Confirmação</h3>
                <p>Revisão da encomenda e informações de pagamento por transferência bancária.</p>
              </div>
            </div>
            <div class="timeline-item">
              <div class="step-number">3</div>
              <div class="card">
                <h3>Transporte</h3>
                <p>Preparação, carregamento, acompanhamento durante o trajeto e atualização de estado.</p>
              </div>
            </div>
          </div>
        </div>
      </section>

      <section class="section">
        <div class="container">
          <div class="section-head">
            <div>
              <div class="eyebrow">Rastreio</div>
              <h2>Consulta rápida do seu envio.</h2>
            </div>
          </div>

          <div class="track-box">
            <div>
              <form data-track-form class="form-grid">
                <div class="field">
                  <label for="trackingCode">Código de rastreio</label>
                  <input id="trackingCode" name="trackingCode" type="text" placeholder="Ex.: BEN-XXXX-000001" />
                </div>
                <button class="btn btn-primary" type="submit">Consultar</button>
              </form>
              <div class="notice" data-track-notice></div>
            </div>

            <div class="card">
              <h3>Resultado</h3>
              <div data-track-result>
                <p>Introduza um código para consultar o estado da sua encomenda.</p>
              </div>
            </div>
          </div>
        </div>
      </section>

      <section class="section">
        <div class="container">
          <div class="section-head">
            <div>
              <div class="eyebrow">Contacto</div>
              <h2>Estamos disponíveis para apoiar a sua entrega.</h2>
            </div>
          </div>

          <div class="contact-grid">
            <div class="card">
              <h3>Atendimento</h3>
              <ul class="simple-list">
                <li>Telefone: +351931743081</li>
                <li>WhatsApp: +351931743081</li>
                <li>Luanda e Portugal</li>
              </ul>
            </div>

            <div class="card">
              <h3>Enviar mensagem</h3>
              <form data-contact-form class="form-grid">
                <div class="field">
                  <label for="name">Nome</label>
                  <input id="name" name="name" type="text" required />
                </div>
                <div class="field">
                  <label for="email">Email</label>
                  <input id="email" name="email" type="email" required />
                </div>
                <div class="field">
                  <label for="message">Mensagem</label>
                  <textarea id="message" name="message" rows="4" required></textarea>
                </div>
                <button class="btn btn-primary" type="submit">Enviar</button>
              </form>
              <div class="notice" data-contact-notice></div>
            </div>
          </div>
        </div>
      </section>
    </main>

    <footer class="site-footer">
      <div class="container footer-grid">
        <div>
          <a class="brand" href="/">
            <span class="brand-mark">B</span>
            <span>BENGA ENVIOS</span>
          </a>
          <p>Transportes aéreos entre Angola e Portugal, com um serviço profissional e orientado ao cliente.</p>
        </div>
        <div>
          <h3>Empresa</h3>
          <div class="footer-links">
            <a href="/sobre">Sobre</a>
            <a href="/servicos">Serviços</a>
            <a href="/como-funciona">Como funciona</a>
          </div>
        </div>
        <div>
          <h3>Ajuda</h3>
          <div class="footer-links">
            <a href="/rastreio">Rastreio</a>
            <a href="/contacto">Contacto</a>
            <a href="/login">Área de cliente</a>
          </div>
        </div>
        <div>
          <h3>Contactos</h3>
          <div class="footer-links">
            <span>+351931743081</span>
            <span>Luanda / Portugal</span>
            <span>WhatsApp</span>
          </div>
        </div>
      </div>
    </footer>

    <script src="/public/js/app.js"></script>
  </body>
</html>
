@@ -1,0 +1,115 @@
+public/js/app.js
+
+const header = document.querySelector('.site-header');
+const toggle = document.querySelector('.mobile-toggle');
+
+if (toggle && header) {
+  toggle.addEventListener('click', () => {
+    header.classList.toggle('menu-open');
+  });
+}
+
+const forms = document.querySelectorAll('[data-form]');
+forms.forEach((form) => {
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+    const messageBox = form.querySelector('.notice');
+
+    try {
+      const action = form.dataset.action || '/auth/login';
+      const response = await fetch(action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: new URLSearchParams(payload).toString()
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        messageBox.className = 'notice error';
+        messageBox.textContent = result.error || 'Não foi possível concluir.';
+        messageBox.style.display = 'block';
+        return;
+      }
+
+      messageBox.className = 'notice success';
+      messageBox.textContent = result.message || 'Operação concluída.';
+      messageBox.style.display = 'block';
+
+      if (action === '/auth/register' || action === '/auth/login') {
+        window.location.href = '/cliente';
+      }
+    } catch (error) {
+      messageBox.className = 'notice error';
+      messageBox.textContent = 'Ocorreu um erro ao processar o pedido.';
+      messageBox.style.display = 'block';
+    }
+  });
+});
+
+const trackForm = document.querySelector('[data-track-form]');
+if (trackForm) {
+  trackForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const code = new FormData(trackForm).get('trackingCode');
+    const output = document.querySelector('[data-track-result]');
+    const notice = document.querySelector('[data-track-notice]');
+
+    try {
+      const response = await fetch(`/api/track?code=${encodeURIComponent(code || '')}`);
+      const result = await response.json();
+
+      if (!response.ok) {
+        notice.className = 'notice error';
+        notice.textContent = result.error || 'Código inválido.';
+        notice.style.display = 'block';
+        output.textContent = 'Sem resultados.';
+        return;
+      }
+
+      notice.className = 'notice success';
+      notice.textContent = 'Consulta concluída.';
+      notice.style.display = 'block';
+      output.innerHTML = `
+        <strong>${result.code}</strong><br>
+        Estado: ${result.status}<br>
+        Rota: ${result.route}<br>
+        Mercadoria: ${result.goods}<br>
+        Valor: ${Number(result.amount || 0).toFixed(2)} €
+      `;
+    } catch (error) {
+      notice.className = 'notice error';
+      notice.textContent = 'Não foi possível consultar o rastreio.';
+      notice.style.display = 'block';
+    }
+  });
+}
+
+const contactForm = document.querySelector('[data-contact-form]');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(contactForm);
+    const payload = Object.fromEntries(formData.entries());
+    const notice = document.querySelector('[data-contact-notice]');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: new URLSearchParams(payload).toString()
+      });
+      const result = await response.json();
+      notice.className = 'notice ' + (response.ok ? 'success' : 'error');
+      notice.textContent = result.message || result.error || 'Pedido processado.';
+      notice.style.display = 'block';
+      if (response.ok) contactForm.reset();
+    } catch (error) {
+      notice.className = 'notice error';
+      notice.textContent = 'Não foi possível enviar a mensagem.';
+      notice.style.display = 'block';
+    }
+  });
+}
+
