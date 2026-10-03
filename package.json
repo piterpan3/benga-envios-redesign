@@ -1,0 +1,23 @@
+{
+  "name": "benga-envios",
+  "version": "1.0.0",
+  "description": "Logística aérea premium Angola ↔ Portugal",
+  "main": "server/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test tests/**/*.test.js",
+    "test:e2e": "node tests/e2e.js"
+  },
+  "keywords": [
+    "logística",
+    "aviação",
+    "Angola",
+    "Portugal"
+  ],
+  "author": "BENGA ENVIOS",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
